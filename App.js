@@ -1,21 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import {
-  Text,
-  View,
-  TextInput,
-  Button,
-  StyleSheet,
-  TouchableOpacity,
-} from "react-native";
+import {Text, View,TextInput,Button,StyleSheet, Alert} from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { RadioButton } from "react-native-paper";
+
 
 export default function App() {
   const [textName, setName] = React.useState(null);
   const [textDestination, setDestination] = React.useState(null);
   const [textDate, setDate] = React.useState(new Date());
-
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const showDatePicker = () => {
     setDatePickerVisibility(true);
@@ -27,8 +20,35 @@ export default function App() {
     setDate(date);
     hideDatePicker();
   };
-  const [value, setValue] = React.useState("first");
+  
+
+
+  const [value, setValue] = React.useState("");
   const [textDescription, setDescription] = React.useState(null);
+// bug nhập vào đi =)))
+  const checkTextInput = () => {
+    //Check for the Name TextInput
+    if (!textName.trim()) {
+      alert('Please Enter Name');
+      return;
+    }
+    if (!textDestination.trim()) {
+      alert('Please Enter Destination');
+      return;
+    }
+    if (!value.trim()) {
+      alert('Please Require Risks');
+      return;
+    }
+    if (!textDescription.trim()) {
+      alert('Please Enter Destination');
+      return;
+    }
+    //Checked Successfully
+    //Do whatever you want
+    Alert.alert('Details entered','Name: ' + textName + '\nDestination: ' + textDestination
+    + '\nDate: ' + textDate + '\nRisks: ' + value+ '\nDescription: ' + textDescription);
+  };
 
   return (
     <View style={styles.container}>
@@ -55,7 +75,7 @@ export default function App() {
         ></TextInput>
 
         <Text style={styles.name}>Date of the Trip</Text>
-
+        
         <View style={styles.buttonDate}>
           <Button
             title={textDate.toLocaleDateString()}
@@ -92,18 +112,17 @@ export default function App() {
           multiline={true}
           maxLength={100}
           onChangeText={setDescription}
-          value={textDescription }
+          value={textDescription}
           placeholder="Description..."
         ></TextInput>
 
         <View style={styles.saveButton}>
-        <Button
-        title="Save"
-        color={"#0081A8"}
-        onPress={() => console.log('Success')}
-      />
-      </View>
-
+          <Button
+            title="Save"
+            color={"#0081A8"}
+            onPress={checkTextInput}
+          />
+        </View>
       </View>
     </View>
   );
@@ -143,7 +162,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 10,
     fontSize: 18,
-    borderColor:"#F07168"
+    borderColor: "#F07168",
   },
 
   buttonDate: {
@@ -153,7 +172,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     padding: 5,
     borderRadius: 16,
-    
   },
   radioButton: {
     flexDirection: "row",
@@ -161,7 +179,7 @@ const styles = StyleSheet.create({
     marginStart: 20,
     marginTop: 10,
   },
-  inputDescription:{
+  inputDescription: {
     height: 100,
     margin: 12,
     marginHorizontal: 20,
@@ -172,10 +190,9 @@ const styles = StyleSheet.create({
     fontSize: 18,
     borderWidth: 2,
     textAlignVertical: "top",
-    borderColor:"#F07168",
+    borderColor: "#F07168",
   },
-  saveButton:{
-    marginHorizontal:130,
-    
-  }
+  saveButton: {
+    marginHorizontal: 130,
+  },
 });
