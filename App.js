@@ -25,7 +25,7 @@ export default function App() {
 
   const [value, setValue] = React.useState("");
   const [textDescription, setDescription] = React.useState(null);
-// bug nhập vào đi =)))
+// bug nhập vào đi =))) React ngu del chiu dc 
   const checkTextInput = () => {
     //Check for the Name TextInput
     if (!textName.trim()) {
@@ -58,7 +58,7 @@ export default function App() {
       </View>
 
       <View style={styles.Layout}>
-        <Text style={styles.name}>Name</Text>
+        <Text style={styles.text}>Name</Text>
         <TextInput
           style={styles.input}
           onChangeText={setName}
@@ -66,7 +66,7 @@ export default function App() {
           placeholder="Name"
         ></TextInput>
 
-        <Text style={styles.name}>Destination</Text>
+        <Text style={styles.text}>Destination</Text>
         <TextInput
           style={styles.input}
           onChangeText={setDestination}
@@ -74,7 +74,7 @@ export default function App() {
           placeholder="Destination"
         ></TextInput>
 
-        <Text style={styles.name}>Date of the Trip</Text>
+        <Text style={styles.text}>Date of the Trip</Text>
         
         <View style={styles.buttonDate}>
           <Button
@@ -88,7 +88,7 @@ export default function App() {
             onCancel={hideDatePicker}
           />
         </View>
-        <Text style={styles.name}>Require Risks Assessment</Text>
+        <Text style={styles.text}>Require Risks Assessment</Text>
 
         <View>
           <RadioButton.Group
@@ -106,7 +106,7 @@ export default function App() {
           </RadioButton.Group>
         </View>
 
-        <Text style={styles.name}>Description</Text>
+        <Text style={styles.text}>Description</Text>
         <TextInput
           style={styles.inputDescription}
           multiline={true}
@@ -119,8 +119,9 @@ export default function App() {
         <View style={styles.saveButton}>
           <Button
             title="Save"
-            color={"#0081A8"}
+            color={"#F07168"}
             onPress={checkTextInput}
+            textColor={"#000000"}
           />
         </View>
       </View>
@@ -131,7 +132,7 @@ export default function App() {
 const styles = StyleSheet.create({
   tabBarContainer: {
     // flex: 1,
-    backgroundColor: "#01AFBA",
+    backgroundColor: "#F07168",
     marginTop: 25,
     alignItems: "center",
     justifyContent: "center",
@@ -147,10 +148,11 @@ const styles = StyleSheet.create({
     height: "100%",
     backgroundColor: "#FDFCDD",
   },
-  name: {
+  text: {
     fontSize: 20,
     marginTop: 14,
     marginStart: 20,
+    fontWeight: "bold",
   },
 
   input: {
